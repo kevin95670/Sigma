@@ -1,0 +1,82 @@
+services:
+  db:
+    image: mariadb:11
+    container_name: mariadb-sigma
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: ${DB_NAME}
+      MARIADB_USER: ${DB_USER}
+      MARIADB_PASSWORD: ${DB_PASSWORD}
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    ports:
+      - "3306:3306"          # pour DBeaver etc.
+    volumes:
+      - db_data:/var/lib/mysql
+
+  wordpress:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: wordpress-sigma
+    restart: unless-stopped
+    depends_on:
+      - db
+      - mailpit
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_NAME: ${DB_NAME}
+      WORDPRESS_DB_USER: ${DB_USER}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+      WORDPRESS_DEBUG: "1"
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_ENVIRONMENT_TYPE', 'local');
+        define('WP_DEBUG_LOG', true);
+        define('WP_DEBUG_DISPLAY', false);
+    ports:
+      - "8080:80"            # http://localhost:8080
+    volumes:
+      - wp_data:/var/www/html
+      # Seuls TON code est versionné : thème enfant + plugin maison
+      - ./wp-content/themes/resto-child:/var/www/html/wp-content/themes/resto-child
+      - ./wp-content/plugins/resto-core:/var/www/html/wp-content/plugins/resto-core
+
+  phpmyadmin:
+    image: phpmyadmin:5
+    container_name: phpmyadmin-sigma
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+    ports:
+      - "8081:80"            # http://localhost:8081
+
+  mailpit:
+    image: axllent/mailpit
+    container_name: mailpit-sigma
+    restart: unless-stopped
+    ports:
+      - "8025:8025"          # interface web : http://localhost:8025
+      - "1025:1025"          # SMTP
+
+  wpcli:
+    image: wordpress:cli-php8.3
+    profiles: ["tools"]
+    depends_on:
+      - db
+      - wordpress
+    user: "33:33"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_NAME: ${DB_NAME}
+      WORDPRESS_DB_USER: ${DB_USER}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - wp_data:/var/www/html
+      - ./wp-content/themes/resto-child:/var/www/html/wp-content/themes/resto-child
+      - ./wp-content/plugins/resto-core:/var/www/html/wp-content/plugins/resto-core
+
+volumes:
+  db_data:
+  wp_data:
