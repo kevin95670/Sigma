@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <title>Sigma</title>
+  <!-- fond beige + anneau orange -->
+  <circle cx="256" cy="256" r="248" fill="#F5E6CC"/>
+  <circle cx="256" cy="256" r="228" fill="none" stroke="#D9731A" stroke-width="8"/>
+
+  <!-- fourchette (gauche) -->
+  <g fill="none" stroke="#D9731A" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M92 112 V184 Q92 214 112 214 Q132 214 132 184 V112" stroke-width="11"/>
+    <path d="M112 112 V214" stroke-width="11"/>
+    <path d="M112 214 V396" stroke-width="16"/>
+  </g>
+
+  <!-- couteau (droite) -->
+  <path d="M394 112 C444 150 444 240 394 276 Z" fill="#D9731A"/>
+  <rect x="386" y="262" width="16" height="134" rx="8" fill="#D9731A"/>
+
+  <!-- S central -->
+  <path d="M306 196 C306 146 206 146 206 206 C206 262 306 250 306 314 C306 372 206 372 206 316"
+        fill="none" stroke="#D9731A" stroke-width="38" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
