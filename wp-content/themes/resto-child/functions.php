@@ -13,13 +13,13 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function resto_child_charger_styles() {
 
-    $fichier = get_stylesheet_directory() . '/style.css';
+    $fichier = get_stylesheet_directory() . '/style.css'; //Chemin style thème enfant
 
     wp_enqueue_style(
         'resto-child',
         get_stylesheet_uri(),
         array(),
         file_exists( $fichier ) ? filemtime( $fichier ) : '0.2.0'
-    );
+    ); //Liste des style à charger par wordpress
 }
-add_action( 'wp_enqueue_scripts', 'resto_child_charger_styles', 20 );
+add_action( 'wp_enqueue_scripts', 'resto_child_charger_styles', 20 ); //Hook déclenché pour charger les styles du thème enfant
