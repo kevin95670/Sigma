@@ -24,3 +24,5 @@ require_once RESTO_CORE_PATH . 'includes/plats.php';
 require_once RESTO_CORE_PATH . 'includes/carte.php';
 require_once RESTO_CORE_PATH . 'includes/reservations.php';
 require_once RESTO_CORE_PATH . 'includes/mail.php';
+require_once RESTO_CORE_PATH . 'includes/boutique.php';
+require_once RESTO_CORE_PATH . 'includes/compte.php';
