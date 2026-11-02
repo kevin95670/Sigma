@@ -7,10 +7,7 @@ Version:      0.1.0
 Text Domain:  resto-child
 */
 
-/* ==========================================================================
-   1. Variables : palette et polices de Sigma
-   Pour changer une couleur du site, on la change ici, à un seul endroit.
-   ========================================================================== */
+/* 1. Variables : palette et polices de Sigma */
 
 :root {
     /* Orange (couleur principale) */
@@ -42,12 +39,7 @@ Text Domain:  resto-child
     --sigma-police-texte: 'Lato', sans-serif;
 }
 
-/* ==========================================================================
-   2. Menu principal : barre orange sous la page active
-   « inset box-shadow » dessine un trait de 3 px au bas du lien, sans
-   toucher à la mise en page. S'applique à la page courante, et au parent
-   quand on est sur une sous-page (ex. Recettes sucrées → Recettes).
-   ========================================================================== */
+/* 2. Menu principal : barre orange sous la page active */
 
 .main-navigation .primary-menu-container > ul > li.current-menu-item > a,
 .main-navigation .primary-menu-container > ul > li.current_page_item > a,
@@ -55,11 +47,7 @@ Text Domain:  resto-child
     box-shadow: inset 0 -3px 0 var(--sigma-orange);
 }
 
-/* ==========================================================================
-   3. Sous-menu (Recettes → Sucrées / Salées) : coins arrondis et ombre
-   À vérifier : Kadence propose peut-être ces réglages dans Menu principal →
-   Sous-menu. Si oui, utilise-les et supprime ce bloc.
-   ========================================================================== */
+/* 3. Sous-menu (Recettes → Sucrées / Salées) : coins arrondis et ombre */
 
 .main-navigation .primary-menu-container ul ul.sub-menu {
     background: var(--sigma-fond);
@@ -78,8 +66,7 @@ Text Domain:  resto-child
     margin: 0;
 }
 
-/* Séparateur : un trait fin avec un petit losange orange au centre,
-   entre deux liens consécutifs. */
+/* Séparateur : un trait fin avec un petit losange orange au centre */
 .main-navigation .primary-menu-container ul ul.sub-menu li + li {
     position: relative;
     padding-top: 14px;
@@ -125,11 +112,7 @@ Text Domain:  resto-child
     transform: none !important;
 }
 
-/* ==========================================================================
-   4. Panier : pastille verte avec le nombre d'articles
-   À vérifier : si le réglage « Mise en évidence » de la palette (vert) est
-   déjà appliqué à la pastille, ce bloc est inutile.
-   ========================================================================== */
+/* 4. Panier : pastille verte avec le nombre d'articles */
 
 .header-cart-total {
     background: var(--sigma-vert);
@@ -137,9 +120,7 @@ Text Domain:  resto-child
     font-weight: 700;
 }
 
-/* ==========================================================================
-   5. Bloc du slider (Smart Slider) : palette Sigma
-   ========================================================================== */
+/* 5. Bloc du slider (Smart Slider) : palette Sigma */
 
 .resto-slide-block {
     background: rgba(28, 28, 28, 0.75);
@@ -165,13 +146,7 @@ Text Domain:  resto-child
     background: var(--sigma-orange-tres-fonce);
 }
 
-/* ==========================================================================
-   6. Tiroir du menu mobile : séparateurs et sous-menu
-   - on retire les pointillés par défaut ;
-   - un trait gris fin sépare les liens du menu principal ;
-   - le sous-menu (Recettes sucrées / salées) est un encadré orange pâle
-     aux coins arrondis, sans séparateurs.
-   ========================================================================== */
+/* 6. Tiroir du menu mobile : séparateurs et sous-menu */
 
 /* 1. On enlève toutes les bordures du tiroir... */
 #mobile-drawer .mobile-navigation li,
@@ -218,11 +193,7 @@ Text Domain:  resto-child
     border-color: var(--sigma-orange);
     color: var(--sigma-orange-fonce);
 }
-/* ==========================================================================
-   7. Footer : bouton du bandeau orange (couleurs au survol) et bouton du
-   tiroir mobile. Le style du bouton est fait en natif ; cette règle sert
-   seulement à passer devant la règle de survol de Kadence.
-   ========================================================================== */
+/* 7. Footer : couleurs de survol du bouton du bandeau orange */
 
 .site-top-footer-wrap .wp-block-button .wp-block-button__link:hover,
 .site-top-footer-wrap .wp-block-button .wp-block-button__link:focus {
@@ -241,11 +212,7 @@ Text Domain:  resto-child
     margin-top: 16px;
 }
 
-/* ==========================================================================
-   8. Icônes sociales du footer : sans puces, orange
-   Kadence remet des puces aux listes des widgets et impose sa couleur de
-   lien : on rétablit les icônes propres.
-   ========================================================================== */
+/* 8. Icônes sociales du footer : sans puces, orange */
 
 .site-footer .wp-block-social-links,
 .site-footer .wp-block-social-links li {
@@ -266,11 +233,7 @@ Text Domain:  resto-child
     color: #FFFFFF !important;
 }
 
-/* ==========================================================================
-   9. Petit trait orange sous les titres du footer
-   Le bloc Séparateur de WordPress est centré et sans réglage de largeur :
-   on le met à gauche, court, en orange.
-   ========================================================================== */
+/* 9. Petit trait orange sous les titres du footer */
 
 .site-middle-footer-wrap .wp-block-separator {
     width: 40px !important;
@@ -282,9 +245,7 @@ Text Domain:  resto-child
     opacity: 1;
 }
 
-/* ==========================================================================
-   11. Footer (rangée du milieu) : tablette en bandeau + 3 colonnes
-   ========================================================================== */
+/* 11. Footer (rangée du milieu) : tablette en bandeau + 3 colonnes */
 
 @media (min-width: 768px) and (max-width: 1024px) {
     .site-middle-footer-inner-wrap {
@@ -303,9 +264,7 @@ Text Domain:  resto-child
     }
 }
 
-/* ==========================================================================
-   12. Fil d'Ariane du bandeau : sans soulignement, séparateur espacé
-   ========================================================================== */
+/* 12. Fil d'Ariane du bandeau : sans soulignement, séparateur espacé */
 
 .kadence-breadcrumbs a {
     text-decoration: none;
@@ -319,9 +278,7 @@ Text Domain:  resto-child
     color: var(--sigma-orange);
 }
 
-/* ==========================================================================
-   13. Page Contact : carte en deux moitiés
-   ========================================================================== */
+/* 13. Page Contact : carte en deux moitiés */
 
 /* La carte : coins arrondis qui découpent les colonnes, colonnes collées */
 .carte-contact {
@@ -401,11 +358,7 @@ Text Domain:  resto-child
     }
 }
 
-/* ==========================================================================
-   14. Formulaires WPForms : champs gris clair arrondis, bouton orange
-   Pas de cadre propre : le formulaire vit dans la carte de la page.
-   Les !important passent devant les variables du style « moderne » de WPForms.
-   ========================================================================== */
+/* 14. Formulaires WPForms : champs gris clair arrondis, bouton orange */
 
 div.wpforms-container-full {
     background: transparent;
@@ -511,11 +464,7 @@ div.wpforms-container-full .wpforms-form .wpforms-submit-container button[type="
     box-shadow: 0 8px 18px rgba(194, 65, 12, 0.30);
 }
 
-/* ==========================================================================
-   16. La carte du restaurant (shortcode [carte])
-   Une section par catégorie ; chaque plat : nom, pastilles, points de
-   conduite, prix, puis description.
-   ========================================================================== */
+/* 16. La carte du restaurant (shortcode [carte]) */
 
 .resto-menu {
     display: flex;
@@ -690,10 +639,7 @@ div.wpforms-container-full .wpforms-form .wpforms-submit-container button[type="
     }
 }
 
-/* ==========================================================================
-   17. Grille des recettes (shortcode [recettes])
-   Barre (filtres, nombre, tri), cartes avec pastille de type, pagination.
-   ========================================================================== */
+/* 17. Grille des recettes (shortcode [recettes]) */
 
 .resto-recettes {
     display: flex;
@@ -922,10 +868,7 @@ a.resto-page-lien:focus {
     color: #FFFFFF !important;
 }
 
-/* ==========================================================================
-   18. Fiche recette (pastilles, temps, ingrédients, titres)
-   Remplace l'ancien recette.css du plugin (anciennes couleurs beige/brun).
-   ========================================================================== */
+/* 18. Fiche recette (pastilles, temps, ingrédients, titres) */
 
 .resto-fiche {
     margin-bottom: 1.5rem;
@@ -1320,9 +1263,7 @@ body .kadence-breadcrumbs .kadence-bread-current span {
     }
 }
 
-/* ==========================================================================
-   19. Réservation de table : shortcode [reservation]
-   ========================================================================== */
+/* 19. Réservation de table : shortcode [reservation] */
 
 .resto-resa {
     display: flex;
@@ -1548,9 +1489,7 @@ body .kadence-breadcrumbs .kadence-bread-current span {
     display: none;
 }
 
-/* ==========================================================================
-   20. Boutique WooCommerce : filtres, grille de produits, boutons, badges
-   ========================================================================== */
+/* 20. Boutique WooCommerce : filtres, grille de produits, boutons, badges */
 
 /* Filtres de catégories : mêmes pastilles que la page Recettes (.resto-filtre) */
 .resto-filtres-boutique {
@@ -1684,9 +1623,7 @@ body .kadence-breadcrumbs .kadence-bread-current span {
     line-height: 1 !important;
 }
 
-/* Boutique : centrage du texte des boutons (version finale)
-   Kadence met dans le bouton deux petites icônes (chargement et coche) qui
-   décalaient le texte : on les cache, sauf pendant l'ajout au panier. */
+/* Boutique : centrage du texte des boutons (version finale) */
 body .woocommerce ul.products li.product a.button {
     display: flex !important;
     align-items: center;
@@ -1707,8 +1644,7 @@ body .woocommerce ul.products li.product a.button.added .kadence-svg-iconset:has
     margin-left: 8px;
 }
 
-/* Boutique : on répond directement à la règle de Kadence
-   (.woo-archive-btn-button { display: block }) avec la même cible */
+/* Boutique : on répond directement à la règle de Kadence */
 .woocommerce ul.products.woo-archive-btn-button .button:not(.kb-button),
 .woocommerce ul.products li.woo-archive-btn-button .button:not(.kb-button) {
     display: flex !important;
@@ -1759,9 +1695,7 @@ body .woocommerce ul.products li.product a.button.added .kadence-svg-iconset:has
     }
 }
 
-/* Boutique : tablette et mobile
-   Les pastilles passent à la ligne (plus petites sur mobile) ; le nombre de
-   résultats et le tri passent en dessous, bien alignés à gauche. */
+/* Boutique : tablette et mobile */
 @media (max-width: 1024px) {
     .resto-boutique-barre {
         flex-direction: column;
@@ -1810,8 +1744,7 @@ body .woocommerce ul.products li.product a.button.added .kadence-svg-iconset:has
     }
 }
 
-/* Cartes produits des blocs « Produits similaires », « Vous aimerez aussi » et
-   « Ventes croisées » : même marge intérieure que sur la boutique */
+/* Cartes produits (produits similaires, ventes croisées) : même marge que la boutique */
 body .woocommerce ul.products li.product .product-details,
 body .woocommerce ul.products li.product .entry-content-wrap,
 body .related ul.products li.product .product-details,
@@ -1827,9 +1760,7 @@ body .cross-sells ul.products li.product .product-details {
     color: var(--sigma-orange);
 }
 
-/* ==========================================================================
-   21. Panier WooCommerce (blocs) : articles, récapitulatif, boutons
-   ========================================================================== */
+/* 21. Panier WooCommerce (blocs) : articles, récapitulatif, boutons */
 
 /* Boutons principaux de WooCommerce (panier, validation) : pilules orange */
 .wc-block-components-button:not(.is-link),
@@ -2216,9 +2147,7 @@ body .cross-sells ul.products li.product .product-details {
     }
 }
 
-/* ==========================================================
-   22. Validation de la commande (bloc Checkout de WooCommerce)
-   ========================================================== */
+/* 22. Validation de la commande (bloc Checkout de WooCommerce) */
 
 /* Largeur : jamais plus grand que l'écran */
 .woocommerce-checkout .wp-block-woocommerce-checkout,
@@ -2440,9 +2369,7 @@ body .cross-sells ul.products li.product .product-details {
     }
 }
 
-/* ==========================================================
-   23. Confirmation de commande (page « Merci »)
-   ========================================================== */
+/* 23. Confirmation de commande (page « Merci ») */
 .woocommerce-order {
     max-width: 100%;
 }
@@ -2592,9 +2519,7 @@ body .cross-sells ul.products li.product .product-details {
     color: var(--sigma-orange-fonce);
 }
 
-/* ==========================================================
-   24. Mon compte
-   ========================================================== */
+/* 24. Mon compte */
 
 /* Liens du texte : orange foncé, soulignement fin */
 .woocommerce-account .woocommerce-MyAccount-content a:not(.button):not(.woocommerce-button) {
@@ -2865,11 +2790,7 @@ body .cross-sells ul.products li.product .product-details {
 }
 
 /* Slider d'accueil (Smart Slider) */
-/* Photo du plat en rond avec un arc orange autour (comme la maquette).
-   Le calque Smart Slider a la classe photo-ronde. Son conteneur est plus large
-   que la photo (1240 px), donc l'arc est dessiné sur le conteneur de l'image,
-   qu'on réduit à la taille de la photo. Les tailles restent celles de
-   Smart Slider : on ne touche qu'à l'arrondi et à l'arc (30 px autour). */
+/* Photo du plat en rond avec un arc orange autour (comme la maquette). */
 .photo-ronde,
 .photo-ronde.n2-ow,
 .photo-ronde .n2-ow-all {
@@ -2904,11 +2825,7 @@ body .cross-sells ul.products li.product .product-details {
     text-transform: none;
 }
 
-/* Slider d'accueil : points de navigation (Smart Slider)
-   Point normal : petit rond gris. Point actif : pastille allongée dont l'orange
-   se remplit de gauche à droite pendant la durée de la slide (5 s = le délai de
-   lecture automatique réglé dans Smart Slider). Chaque changement de slide
-   relance l'animation sur le nouveau point. */
+/* Slider d'accueil : points de navigation (Smart Slider) */
 .n2-ss-slider .n2-ss-control-bullet .n2-bullet {
     box-sizing: border-box;
     width: 8px !important;
@@ -2936,8 +2853,7 @@ body .cross-sells ul.products li.product .product-details {
     animation-play-state: paused;
 }
 
-/* Accueil : un slider par taille d'écran (bureau, tablette, mobile).
-   La classe se met dans Elementor : widget → Avancé → Classes CSS. */
+/* Accueil : un slider par taille d'écran (bureau, tablette, mobile). */
 .slider-tablette,
 .slider-mobile {
     display: none !important;
@@ -2957,9 +2873,7 @@ body .cross-sells ul.products li.product .product-details {
     text-transform: none !important;
 }
 
-/* Slider : les 3 pastilles (durée, difficulté, budget) dans un seul calque texte.
-   Dans Smart Slider : <span class="pastille">50 min</span> <span class="pastille">Facile</span> ...
-   Elles se centrent et passent à la ligne toutes seules. */
+/* Slider : les 3 pastilles (durée, difficulté, budget) dans un seul calque texte. */
 .n2-ss-slider .pastille {
     display: inline-block;
     margin: 0 4px 8px;
@@ -2974,11 +2888,7 @@ body .cross-sells ul.products li.product .product-details {
     white-space: nowrap;
 }
 
-/* ==========================================================================
-   25. Accueil : fond rond des icônes des trois atouts
-   Le conteneur « grille » d'Elementor n'affiche pas la classe personnalisée
-   dans le HTML : on cible donc les boîtes d'icônes directement dans la grille.
-   ========================================================================== */
+/* 25. Accueil : fond rond des icônes des trois atouts */
 
 .e-grid-base > .elementor-widget-icon-box .elementor-icon {
     display: flex;
@@ -2995,8 +2905,7 @@ body .cross-sells ul.products li.product .product-details {
     background: var(--sigma-vert-pale);
 }
 
-/* Accueil, bloc « La carte » : pastilles de catégories sur fond noir
-   (widget HTML d'Elementor, liens vers les ancres de la page La carte) */
+/* Accueil, bloc « La carte » : pastilles de catégories sur fond noir */
 .pastilles-carte {
     display: flex;
     flex-wrap: wrap;
@@ -3022,11 +2931,7 @@ body .cross-sells ul.products li.product .product-details {
     color: #FFFFFF;
 }
 
-/* Accueil, bloc « La carte » : photo ronde avec un arc orange (bas et gauche)
-   à 14 px autour. L'arc est la bordure de l'image elle-même : 3 px de bordure
-   (seuls le bas et la gauche sont colorés) + 11 px de marge intérieure. Avec
-   des coins à 50 %, la photo à l'intérieur reste un rond parfait.
-   On cible le conteneur d'Elementor par son identifiant (7228b08). */
+/* Accueil, bloc « La carte » : photo ronde avec un arc orange (bas et gauche) */
 .elementor-element-7228b08 > .e-image-base {
     box-sizing: content-box;
     flex-shrink: 0;
@@ -3091,15 +2996,12 @@ body .cross-sells ul.products li.product .product-details {
     }
 }
 
-/* 26. Accueil : bloc « Les recettes » (Elementor)
-   Les filtres sont centrés (sur les pages Recettes, ils restent à gauche). */
+/* 26. Accueil : bloc « Les recettes » (Elementor) */
 .elementor .resto-recettes-filtres {
     justify-content: center;
 }
 
-/* 27. Accueil : lien « Toute la boutique → » (classe lien-boutique)
-   La classe est sur le bouton lui-même. Texte sur une seule ligne,
-   sans fond ni ombre au survol (style Kadence). */
+/* 27. Accueil : lien « Toute la boutique → » (classe lien-boutique) */
 .elementor .lien-boutique,
 .elementor button.lien-boutique {
     flex-shrink: 0;
@@ -3124,8 +3026,7 @@ body .cross-sells ul.products li.product .product-details {
     text-decoration: underline;
 }
 
-/* Mobile : l'en-tête de la boutique passe en colonne
-   (titre au-dessus, lien « Toute la boutique → » en dessous). */
+/* Mobile : l'en-tête de la boutique passe en colonne */
 @media (max-width: 767px) {
     .elementor div:has(> .lien-boutique) {
         flex-direction: column !important;
