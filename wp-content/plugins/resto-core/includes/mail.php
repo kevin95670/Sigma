@@ -18,6 +18,12 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function resto_mails_vers_mailpit( $phpmailer ) {
 
+    // Seulement en local (Docker). En ligne, WordPress envoie les mails
+    // normalement, par le serveur de l'hébergeur.
+    if ( 'local' !== wp_get_environment_type() ) {
+        return;
+    }
+
     $hote = getenv( 'RESTO_SMTP_HOST' );
     $port = getenv( 'RESTO_SMTP_PORT' );
 
@@ -31,8 +37,9 @@ function resto_mails_vers_mailpit( $phpmailer ) {
 add_action( 'phpmailer_init', 'resto_mails_vers_mailpit' );
 
 // Adresse et nom de l'expéditeur : « Sigma <reservations@sigma.test> ».
-add_filter( 'wp_mail_from', function () {
-    return 'reservations@sigma.test';
+// (Seulement en local : en ligne, WordPress garde son expéditeur par défaut.)
+add_filter( 'wp_mail_from', function ( $adresse ) {
+    return 'local' === wp_get_environment_type() ? 'reservations@sigma.test' : $adresse;
 } );
 add_filter( 'wp_mail_from_name', function () {
     return get_bloginfo( 'name' );
