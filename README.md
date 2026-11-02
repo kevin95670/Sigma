@@ -33,7 +33,7 @@
 | Code maison | Plugin **`resto-core`** (PHP, JS) |
 | Environnement local | Docker Compose (WordPress, MariaDB, phpMyAdmin, Mailpit) |
 | Versionnement | Git / GitHub |
-| Déploiement | GitHub Actions (SSH + rsync) vers Hostinger |
+| Déploiement | GitHub Actions vers Hostinger |
 
 ## Ce que j'ai codé moi-même
 
