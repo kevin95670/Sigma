@@ -1,0 +1,40 @@
+name: Deploy to Hostinger
+
+# Se lance à chaque push sur la branche master
+# (et à la main depuis l'onglet Actions : « Run workflow »).
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Récupère le code du dépôt
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2. Prépare la connexion SSH avec la clé stockée dans les secrets
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      # 3. Envoie le thème enfant (rsync ne copie que ce qui a changé)
+      - name: Deploy child theme
+        run: |
+          rsync -avz --delete \
+            -e "ssh -i ~/.ssh/deploy_key -p ${{ secrets.SSH_PORT }}" \
+            wp-content/themes/resto-child/ \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_PATH }}/wp-content/themes/resto-child/
+
+      # 4. Envoie le plugin maison
+      - name: Deploy resto-core plugin
+        run: |
+          rsync -avz --delete \
+            -e "ssh -i ~/.ssh/deploy_key -p ${{ secrets.SSH_PORT }}" \
+            wp-content/plugins/resto-core/ \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_PATH }}/wp-content/plugins/resto-core/

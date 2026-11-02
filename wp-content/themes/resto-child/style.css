@@ -2903,3 +2903,236 @@ body .cross-sells ul.products li.product .product-details {
 .n2-ss-slider h3 {
     text-transform: none;
 }
+
+/* Slider d'accueil : points de navigation (Smart Slider)
+   Point normal : petit rond gris. Point actif : pastille allongée dont l'orange
+   se remplit de gauche à droite pendant la durée de la slide (5 s = le délai de
+   lecture automatique réglé dans Smart Slider). Chaque changement de slide
+   relance l'animation sur le nouveau point. */
+.n2-ss-slider .n2-ss-control-bullet .n2-bullet {
+    box-sizing: border-box;
+    width: 8px !important;
+    height: 8px !important;
+    margin: 0 5px !important;
+    border: 0 !important;
+    border-radius: 999px !important;
+    background: #6B6B6B !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+}
+.n2-ss-slider .n2-ss-control-bullet .n2-bullet.n2-active {
+    width: 40px !important;
+    background:
+        linear-gradient(var(--sigma-orange), var(--sigma-orange)) no-repeat left center / 0% 100%,
+        #4A4A4A !important;
+    animation: sigma-progression 5s linear forwards;
+}
+@keyframes sigma-progression {
+    from { background-size: 0% 100%, 100% 100%; }
+    to   { background-size: 100% 100%, 100% 100%; }
+}
+/* La barre se met en pause quand on survole le slider (comme la lecture automatique) */
+.n2-ss-slider:hover .n2-ss-control-bullet .n2-bullet.n2-active {
+    animation-play-state: paused;
+}
+
+/* Accueil : un slider par taille d'écran (bureau, tablette, mobile).
+   La classe se met dans Elementor : widget → Avancé → Classes CSS. */
+.slider-tablette,
+.slider-mobile {
+    display: none !important;
+}
+@media (max-width: 1024px) {
+    .slider-bureau   { display: none !important; }
+    .slider-tablette { display: block !important; }
+}
+@media (max-width: 767px) {
+    .slider-tablette { display: none !important; }
+    .slider-mobile   { display: block !important; }
+}
+
+/* Slider : les titres gardent leurs minuscules (Kadence impose des majuscules aux h1-h4) */
+.n2-ss-slider :is(h1, h2, h3, h4),
+.n2-ss-slider :is(h1, h2, h3, h4) * {
+    text-transform: none !important;
+}
+
+/* Slider : les 3 pastilles (durée, difficulté, budget) dans un seul calque texte.
+   Dans Smart Slider : <span class="pastille">50 min</span> <span class="pastille">Facile</span> ...
+   Elles se centrent et passent à la ligne toutes seules. */
+.n2-ss-slider .pastille {
+    display: inline-block;
+    margin: 0 4px 8px;
+    padding: 8px 16px;
+    border: 1px solid #4A4A4A;
+    border-radius: 999px;
+    color: #FFFFFF;
+    font-family: var(--sigma-police-texte);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+/* ==========================================================================
+   25. Accueil : fond rond des icônes des trois atouts
+   Le conteneur « grille » d'Elementor n'affiche pas la classe personnalisée
+   dans le HTML : on cible donc les boîtes d'icônes directement dans la grille.
+   ========================================================================== */
+
+.e-grid-base > .elementor-widget-icon-box .elementor-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--sigma-orange-pale);
+}
+
+/* Troisième colonne (Réservation) : fond vert pâle */
+.e-grid-base > .elementor-widget-icon-box:nth-child(3) .elementor-icon {
+    background: var(--sigma-vert-pale);
+}
+
+/* Accueil, bloc « La carte » : pastilles de catégories sur fond noir
+   (widget HTML d'Elementor, liens vers les ancres de la page La carte) */
+.pastilles-carte {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.pastilles-carte a {
+    display: inline-block;
+    padding: 8px 18px;
+    border: 1px solid #4A4A4A;
+    border-radius: 999px;
+    color: #FFFFFF;
+    font-family: var(--sigma-police-texte);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.3;
+    text-decoration: none;
+    transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+.pastilles-carte a:hover,
+.pastilles-carte a:focus {
+    border-color: var(--sigma-orange);
+    background: var(--sigma-orange-fonce);
+    color: #FFFFFF;
+}
+
+/* Accueil, bloc « La carte » : photo ronde avec un arc orange (bas et gauche)
+   à 14 px autour. L'arc est la bordure de l'image elle-même : 3 px de bordure
+   (seuls le bas et la gauche sont colorés) + 11 px de marge intérieure. Avec
+   des coins à 50 %, la photo à l'intérieur reste un rond parfait.
+   On cible le conteneur d'Elementor par son identifiant (7228b08). */
+.elementor-element-7228b08 > .e-image-base {
+    box-sizing: content-box;
+    flex-shrink: 0;
+    width: min(440px, calc(100vw - 140px)) !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1;
+    padding: 11px;
+    border: 3px solid transparent;
+    border-bottom-color: var(--sigma-orange);
+    border-left-color: var(--sigma-orange);
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Accueil, bloc « La carte » : sur mobile, la photo passe au-dessus du texte */
+@media (max-width: 767px) {
+    .elementor-element-7228b08 {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 40px !important;
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+    }
+    .elementor-element-7228b08 > .elementor-element-cf0dee0 {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+/* La carte : photo plus petite sur tablette et sur mobile */
+@media (max-width: 1024px) {
+    .elementor-element-7228b08 > .e-image-base {
+        width: min(340px, calc(100vw - 140px)) !important;
+    }
+}
+@media (max-width: 767px) {
+    .elementor-element-7228b08 > .e-image-base {
+        width: min(240px, calc(100vw - 140px)) !important;
+    }
+}
+
+/* La carte : titre et texte un peu plus petits (Elementor impose ses tailles : !important) */
+.elementor-element-cf0dee0 h3.e-heading-base {
+    font-size: 38px !important;
+    line-height: 1.15 !important;
+}
+.elementor-element-cf0dee0 p.e-paragraph-base {
+    font-size: 16px !important;
+    line-height: 1.7 !important;
+}
+@media (max-width: 1024px) {
+    .elementor-element-cf0dee0 h3.e-heading-base {
+        font-size: 32px !important;
+    }
+}
+@media (max-width: 767px) {
+    .elementor-element-cf0dee0 h3.e-heading-base {
+        font-size: 28px !important;
+    }
+    .elementor-element-cf0dee0 p.e-paragraph-base {
+        font-size: 15px !important;
+    }
+}
+
+/* 26. Accueil : bloc « Les recettes » (Elementor)
+   Les filtres sont centrés (sur les pages Recettes, ils restent à gauche). */
+.elementor .resto-recettes-filtres {
+    justify-content: center;
+}
+
+/* 27. Accueil : lien « Toute la boutique → » (classe lien-boutique)
+   La classe est sur le bouton lui-même. Texte sur une seule ligne,
+   sans fond ni ombre au survol (style Kadence). */
+.elementor .lien-boutique,
+.elementor button.lien-boutique {
+    flex-shrink: 0;
+    width: auto !important;
+    white-space: nowrap;
+    background: transparent !important;
+    background-image: none !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    color: var(--sigma-orange-fonce) !important;
+    font-weight: 700;
+}
+.elementor .lien-boutique:hover,
+.elementor .lien-boutique:focus,
+.elementor button.lien-boutique:hover,
+.elementor button.lien-boutique:focus {
+    background: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    color: var(--sigma-orange) !important;
+    text-decoration: underline;
+}
+
+/* Mobile : l'en-tête de la boutique passe en colonne
+   (titre au-dessus, lien « Toute la boutique → » en dessous). */
+@media (max-width: 767px) {
+    .elementor div:has(> .lien-boutique) {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 16px !important;
+    }
+    .elementor div:has(> .lien-boutique) > div {
+        width: 100% !important;
+    }
+}

@@ -264,16 +264,23 @@ function resto_rang_difficulte( $id ) {
  * si tu ajoutes une page enfant (par exemple « Recettes végétariennes »), un
  * filtre apparaît tout seul. La page où l'on se trouve est marquée « active ».
  */
-function resto_filtres_recettes() {
+function resto_filtres_recettes( $racine_force = 0 ) {
 
-    $courante = (int) get_queried_object_id();
-    if ( ! $courante ) {
-        return '';
+    if ( $racine_force ) {
+        // Appelé depuis l'accueil : on part de la page « Recettes » donnée,
+        // et « Toutes » est le filtre actif.
+        $courante = (int) $racine_force;
+        $racine   = $courante;
+    } else {
+        $courante = (int) get_queried_object_id();
+        if ( ! $courante ) {
+            return '';
+        }
+
+        // La page « Recettes » : la page courante, ou son parent si on est sur une enfant.
+        $parent = (int) wp_get_post_parent_id( $courante );
+        $racine = $parent ? $parent : $courante;
     }
-
-    // La page « Recettes » : la page courante, ou son parent si on est sur une enfant.
-    $parent = (int) wp_get_post_parent_id( $courante );
-    $racine = $parent ? $parent : $courante;
 
     $enfants = get_pages( array( 'parent' => $racine, 'post_status' => 'publish' ) );
     if ( empty( $enfants ) ) {
@@ -319,3 +326,18 @@ function resto_filtres_recettes() {
 
     return $html;
 }
+
+
+/**
+ * Le shortcode [filtres_recettes] : les mêmes filtres que sur les pages
+ * Recettes, utilisables ailleurs (par exemple sur l'accueil). Il part de la
+ * page dont l'adresse est /recettes/.
+ */
+function resto_shortcode_filtres_recettes() {
+    $page = get_page_by_path( 'recettes' );
+    if ( ! $page ) {
+        return '';
+    }
+    return resto_filtres_recettes( (int) $page->ID );
+}
+add_shortcode( 'filtres_recettes', 'resto_shortcode_filtres_recettes' );
